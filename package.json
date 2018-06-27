@@ -1,0 +1,23 @@
+{
+  "name": "event-x",
+  "version": "0.0.0",
+  "description": "Lightest javascript functional event emitters",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^2.9.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iphong/event-x.git"
+  },
+  "author": "Phong Vu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iphong/event-x/issues"
+  },
+  "homepage": "https://github.com/iphong/event-x"
+}
