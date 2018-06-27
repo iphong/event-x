@@ -10,8 +10,8 @@ export function listeners(target: object): Set<any> {
     return Reflect.get(target, LISTENERS)
 }
 
-export function listen(target: object, type: string, callback): () => void {
-    const listener = { target, type, callback }
+export function listen(target: object, type: string, callback: void): () => void {
+    const listener = { type, callback }
     listeners(target).add(listener)
     return function dispose() {
         listeners(target).delete(listener)
@@ -24,3 +24,4 @@ export function emit(target: object, type: string, ...args): void {
             Reflect.apply(listener.callback, target, args)
     })
 }
+export default { listeners, listen, emit }

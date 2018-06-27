@@ -12,7 +12,7 @@ function listeners(target) {
 }
 exports.listeners = listeners;
 function listen(target, type, callback) {
-    const listener = { target, type, callback };
+    const listener = { type, callback };
     listeners(target).add(listener);
     return function dispose() {
         listeners(target).delete(listener);
@@ -26,4 +26,5 @@ function emit(target, type, ...args) {
     });
 }
 exports.emit = emit;
+exports.default = { listeners, listen, emit };
 //# sourceMappingURL=eventx.js.map
