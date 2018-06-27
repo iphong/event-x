@@ -1,6 +1,6 @@
 {
   "name": "event-x",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Lightest javascript functional event emitters",
   "main": "dist/eventx.js",
   "dependencies": {},
