@@ -1,8 +1,8 @@
 {
   "name": "event-x",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Lightest javascript functional event emitters",
-  "main": "dist/eventx.js",
+  "main": "src/event-x.js",
   "dependencies": {},
   "devDependencies": {
     "typescript": "^2.9.2"
