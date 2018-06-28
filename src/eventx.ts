@@ -1,9 +1,4 @@
-/**
- * @name: event-x
- * @author: Phong Vu
- */
 const listeners = Symbol("listeners");
-const subscribers = Symbol("subscribers");
 
 export function on(target: object, type: string, callback: Function): object {
   if (!target[listeners])
@@ -11,13 +6,11 @@ export function on(target: object, type: string, callback: Function): object {
   target[listeners].push({ type, callback });
   return target
 }
-
 export function off(target: object, type?: string | Function): object {
   if (target[listeners])
     target[listeners] = !type ? [] : target[listeners].filter(listener => (listener.type !== type && listener.callback !== type));
   return target
 }
-
 export function emit(target: object, type: string, ...args): Promise<Array<any>> {
   return new Promise((resolve, reject) => {
     if (target[listeners])

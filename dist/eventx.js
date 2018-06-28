@@ -1,11 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-/**
- * @name: event-x
- * @author: Phong Vu
- */
 const listeners = Symbol("listeners");
-const subscribers = Symbol("subscribers");
 function on(target, type, callback) {
     if (!target[listeners])
         target[listeners] = [];

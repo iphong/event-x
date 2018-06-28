@@ -13,11 +13,23 @@ import events from 'event-x'
 
 const dog = {}
 
-events.on(dog, 'bark').then(() => console.log('dog barked'))
+events.on(dog, 'bark', () => console.log('dog barked'))
 
 events.emit(dog, 'bark')// should log "dog is barking"
 
 events.off(dog, 'bark')
 
 events.emit(dog, 'bark') // Nothing will happen
+```
+
+### async / await
+```
+const container = {}
+
+const delay = () => new Promise(resolve => setTimeout(resolve, 3000))
+
+events.on(container, 'foo', delay)
+
+events.emit(container, 'foo', 'bar').then(console.log) // shoud log "bar" after 3 seconds
+
 ```
