@@ -1,30 +1,35 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * @name: event-x
  * @author: Phong Vu
  */
-Object.defineProperty(exports, "__esModule", { value: true });
-const LISTENERS = Symbol('event-x-listener');
-function listeners(target) {
-    if (!Reflect.has(target, LISTENERS))
-        Reflect.defineProperty(target, LISTENERS, { value: new Set() });
-    return Reflect.get(target, LISTENERS);
+const listeners = Symbol("listeners");
+const subscribers = Symbol("subscribers");
+function on(target, type, callback) {
+    if (!target[listeners])
+        target[listeners] = [];
+    target[listeners].push({ type, callback });
+    return target;
 }
-exports.listeners = listeners;
-function listen(target, type, callback) {
-    const listener = { type, callback };
-    listeners(target).add(listener);
-    return function dispose() {
-        listeners(target).delete(listener);
-    };
+exports.on = on;
+function off(target, type) {
+    if (target[listeners])
+        target[listeners] = !type ? [] : target[listeners].filter(listener => (listener.type !== type && listener.callback !== type));
+    return target;
 }
-exports.listen = listen;
+exports.off = off;
 function emit(target, type, ...args) {
-    listeners(target).forEach(listener => {
-        if (listener.type === type)
-            Reflect.apply(listener.callback, target, args);
+    return new Promise((resolve, reject) => {
+        if (target[listeners])
+            Promise.all(target[listeners].map(listener => {
+                if (listener.type === type)
+                    return Reflect.apply(listener.callback, null, args);
+            })).then(resolve).catch(reject);
+        else
+            resolve();
     });
 }
 exports.emit = emit;
-exports.default = { listeners, listen, emit };
+exports.default = { on, off, emit };
 //# sourceMappingURL=eventx.js.map

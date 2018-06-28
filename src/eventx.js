@@ -28,4 +28,18 @@ export function emit(target: object, type: string, ...args): Promise<Array<any>>
     else resolve();
   });
 }
+export function subscribe(target: object, handler: Function): object {
+  if (!target[subscribers])
+    target[subscribers] = [];
+  target[subscribers].push(handler);
+  return target
+}
+export function unsubscribe(target: object, handler: Function): object {
+  if (target[subscribers])
+    target[subscribers] = target[subscribers].filter(fn => fn !== handler)
+  return target
+}
+export function dispatch(target: object, payload: any) {
+
+}
 export default { on, off, emit }

@@ -11,19 +11,15 @@ npm install event-x
 ### Event Listeners and Emitters
 
 ```js
-import { emit, listen } from 'event-x'
+import events from 'event-x'
 
 const dog = {}
 
-// Attach listener
-const dispose = listen(dog, 'bark').then(() => console.log('dog is barking'))
+events.on(dog, 'bark').then(() => console.log('dog barked'))
 
-// Emit event
-emit(dog, 'bark')// should log "dog is barking"
+events.emit(dog, 'bark')// should log "dog is barking"
 
-// Remove listener
-dispose()
+events.off(dog, 'bark')
 
-emit(dog, 'bark') // Nothing will happen
-
+events.emit(dog, 'bark') // Nothing will happen
 ```
