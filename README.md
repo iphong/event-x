@@ -8,8 +8,6 @@ npm install event-x
 
 ## Usage
 
-### Event Listeners and Emitters
-
 ```js
 import events from 'event-x'
 
