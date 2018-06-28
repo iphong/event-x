@@ -23,7 +23,7 @@ events.emit(dog, 'bark') // Nothing will happen
 ```
 
 ### async / await
-```
+```js
 const container = {}
 
 const delay = () => new Promise(resolve => setTimeout(resolve, 3000))
