@@ -25,24 +25,34 @@ events.off(dog, 'bark')
 events.emit(dog, 'bark') // Nothing will happen
 ```
 
-### Asynchronous
+### Asynchronous operation
 
 If any listener return a promise, then the setState will 
 wait for all of them to be resolved first. Since this is
-ES6 Promise you use async / await operation
+ES6 Promise therefore it fully supports async / await operation
 
 ```js
-const container = {}
+(async () => {
+  const container = {}
 
-const delay = () => new Promise(resolve => setTimeout(resolve, 3000))
+  const delay = () => new Promise(resolve => setTimeout(resolve, 3000))
 
-events.on(container, 'foo', delay)
+  events.on(container, 'foo', delay)
 
-events.emit(container, 'foo', 'bar').then(console.log) // shoud log "bar" after 3 seconds
+  await events.emit(container, 'foo')
+  await events.emit(container, 'foo')
+  console.log('Done') // shoud log "Done" after 6 seconds
+})()
 
 ```
 
 ### It works on anything
 
-Attach events to any objects by calling `events.on()`
-Emit events on any objects by calling 'events.emit'
+Attach listeners to any objects by calling `events.on()`
+
+Trigger events on any objects by calling `events.emit()`
+
+---
+
+Check out my other library [Container-X](https://github.com/iphong/container-x) 
+for easy state management in your React application.
