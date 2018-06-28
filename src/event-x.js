@@ -27,4 +27,4 @@ function emit(target, type, ...args) {
 }
 exports.emit = emit;
 exports.default = { on, off, emit };
-//# sourceMappingURL=eventx.js.map
+//# sourceMappingURL=event-x.js.map
