@@ -15,7 +15,7 @@ const dog = {}
 
 events.on(dog, 'bark', () => console.log('dog barked'))
 
-events.emit(dog, 'bark')// should log "dog is barking"
+events.emit(dog, 'bark')// should log "dog barked"
 
 events.off(dog, 'bark')
 
